@@ -1,4 +1,4 @@
-# MARKDOWN TUTORIAL
+# MARKDOWN NOTES
 
 ### There are 6 heading tags made for writing data. these are :-
 
@@ -181,4 +181,5 @@ use double equals to `==` in the starting and ending of the data . also works in
 ### for subscript and superscript
 
 use `^` in the starting and ending of data you wants to add in superscript whereas use `~` in the starting and ending of data you wants to add in subscript.
+
 
