@@ -187,3 +187,117 @@ if your class is applied then `toggle` will remove it or if the class is not app
 ```javascript
 h1.classList.toggle("<class-name>");
 ```
+
+## EVENTS AND EVENTS HANDLING
+
+means if you perform any action in your website like `click` `double click` `select` `point` `right click` `scroll` `cursor move` you should get any action in return.
+
+- **EVENT BINDING**
+    >event mtlb koi action hua
+
+    > event listener mtlb aapne us action ka reaction diya.
+
+    browser pe koi bhi harkat hui event raise hojaega.
+
+    - **addEventListeners**
+
+    ```javascript
+    let h1 = document.quarySelector("h1");
+
+    h1.addEventListener("event" , function);
+    ```
+    ## 📌 JavaScript Events Reference
+
+    | Event Name | Use (Short Explanation) |
+    |-----------|--------------------------|
+    | `click` | Mouse click hone par |
+    | `dblclick` | Double click hone par |
+    | `mouseover` | Mouse element ke upar aaye |
+    | `mouseout` | Mouse element se bahar jaye |
+    | `mouseenter` | Mouse element me enter kare |
+    | `mouseleave` | Mouse element se leave kare |
+    | `mousedown` | Mouse button dabane par |
+    | `mouseup` | Mouse button chhodne par |
+    | `mousemove` | Mouse move hone par |
+    | `contextmenu` | Right click hone par |
+    | `keydown` | Keyboard key press hone par |
+    | `keyup` | Keyboard key chhodne par |
+    | `keypress` | Key press (deprecated) |
+    | `submit` | Form submit hone par |
+    | `change` | Input value change hone par |
+    | `input` | Real-time input change |
+    | `focus` | Input active hone par |
+    | `blur` | Input se bahar aane par |
+    | `reset` | Form reset hone par |
+    | `load` | Page fully load hone par |
+    | `DOMContentLoaded` | HTML load hone ke baad |
+    | `scroll` | Page scroll hone par |
+    | `resize` | Window size change hone par |
+    | `drag` | Element drag karte waqt |
+    | `dragstart` | Drag start hone par |
+    | `drop` | Element drop hone par |
+    | `copy` | Text copy hone par |
+    | `cut` | Text cut hone par |
+    | `paste` | Text paste hone par |
+    | `play` | Audio/Video play hone par |
+    | `pause` | Audio/Video pause hone par |
+    | `ended` | Media end hone par |
+
+
+
+
+    for example:
+    ```javascript
+    let h1 = document.quarySelector("h1");
+
+    function click(){
+        h1.style.color = "red";
+    }
+
+    h1.addEventListener("click" , click);
+    ```
+
+    - **removeEventListeners**
+
+    ```javascript
+    h1.removeEventListener("click" , click);
+    ```
+    ### COMMON EVENTS
+
+    - **CLICK**
+
+    ```javascript
+    let h1 = document.quarySelector("h1");
+
+    function click(){
+        h1.style.color = "red";
+    }
+
+    h1.addEventListener("click" , click);
+    ```
+
+    - **INPUT**
+
+    ```javascript
+    let inp = document.quarySelector("input");
+
+    inp.addEventListener("input", function(a){
+        console.log(a.data);
+    });
+    ```
+
+    - **CHANGE**
+
+    yeh tab chalta hai jab aapke input select yah text area mai koi change aata h
+
+    ```JAVASCRIPT
+    let select = document.quarySelector("select");
+    let h1 = document.querySelector("h1");
+
+    select.addEventListener("change" , function(){
+    h1.innerHTML = "device selected";
+    });
+    ```
+
+    > you can also use these functions as methods like `h1.click()`.
+
