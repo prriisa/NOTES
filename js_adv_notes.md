@@ -448,3 +448,41 @@ div.addEventListener("clicked" , function(){
 }, true );
 ```
 that simple dude!!
+
+let's take an example.
+
+```javascript
+let a = document.quarySelector("#a");
+let b = document.quarySelector("#b");
+let c = document.quarySelector("#c");
+let button = document.quarySelector("button");
+
+a.addEventListener("clicked" , function(){
+    console.log("a clicked");
+}, true);
+
+b.addEventListener("clicked" , function(){
+    console.log("b clicked");
+});
+
+c.addEventListener("clicked" , function(){
+    console.log("c clicked");
+}, true);
+
+button.addEventListener("clicked" , function(){
+    console.log("button clicked");
+});
+```
+as a result we get output,
+```
+a clicked
+c clicked 
+button clicked
+b clicked
+```
+
+## FORMS AND FORMS VALIDATION
+
+when we create a form, there are some basic criteria for getting an input. like , for name, minimum character should be 3.
+
+### READING VALUES FROM INPUT, TEXTAREA, SELECT.
