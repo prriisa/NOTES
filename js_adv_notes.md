@@ -486,3 +486,161 @@ b clicked
 when we create a form, there are some basic criteria for getting an input. like , for name, minimum character should be 3.
 
 ### READING VALUES FROM INPUT, TEXTAREA, SELECT.
+for reading valuues fro input you can use;
+
+```javascript
+let inp = document.quarySelector("input");
+
+inp.addEventListener("clicked" , function(dets){
+dets.preventdefault();
+    console.log(inp.value);
+})
+```
+
+### INLINE VALIDATION
+
+you can add specific criterias in html part also, for example:-
+    `required` `minlength` `maxlength` 
+
+### PATTERN ATTRIBUTE
+
+```html
+    <input pattern="[a-z]{3-8}" type="text">
+```
+
+### REGEX
+
+regex is a fully different language which is a mixture of patterns of code.
+
+```javascript
+let inp = document.querySelector("#main");
+
+inp.addEventListener("click" , function(dets){
+    dets.preventDefault();
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    emailRegex.test(inp.value);
+});
+```
+
+you may get these rege code from ChatGPT and you may create your custom regex also.
+
+## TIMERS AND INTERVALS
+
+### SET TIMEOUT
+
+`setTimeout` is a function which takes a function and time in mili seconds. 1 second = 1000 mili seconds. which means setTimeout given seconds mai given function ko chala dega.
+
+```javascript
+setTimeout(function(){
+    console.log("hello");
+}, 5000);
+```
+this will log `hello` on console window after 5 seconds.
+
+### SET INTERVAL
+
+`setInterval` is also a function which too takes a funcions and time in mili seconds. and repeat that funcion in the given time interval.
+
+```javascript
+setInterval(function(){
+    console.log("hello");
+}, 5000);
+```
+
+this will log `hello` on consle window in every 5 seconds.
+
+### CLEAR TIMEOUT
+
+this function is used to stop a timeout which in going to be run in an interval of time.
+
+```javascript
+let time = setTimeout(function(){
+    console.log("hello");
+}, 5000);
+
+clearTimeout(time);
+```
+
+mtlb jo `time` timeout 5 second baad chalne wala tha wo aab nahi chalega.
+
+### CLEAR INTERVAL
+
+this function is also used to stop an interval setted in the above code.
+
+```javascript
+let time = setInterval(function(){
+    console.log("hello");
+}, 5000);
+
+clearInterval(time);
+```
+mtlb jo `time` Interval har 5 second mai chalne wala tha wo aab nahi chalega.
+
+## LOCAL STORAGE, SESSION STORAGE AND COOKIES
+
+### LOCAL STORAGE
+aapke browser k andr data store karna jo browser ke band hone k baad bhi store hi rhta hai delete nahi hoga.
+
+- **TO STORE YOUR DATA**
+    ```javascript
+    localStorage.setItem("name" , "harsh");
+    ```
+
+- **TO FETCH YOUR STORED DATA**
+    ```javascript
+    localStorage.getItem("name");
+    ```
+- **TO REMOVE DATA**
+    ```JAVASCRIPT
+    localStorage.removeItem("name");
+    ```
+- **TO UPDATE YOUR STORED DATA**
+    ```JAVASCRIPT
+    localStorage.setItem("name" , "harshita");
+    ```
+- **TO DELETE ALL DATA**
+    ```javascript
+    localStorage.clear();
+    ```
+
+### SESSION STORAGE
+yeh aapke data ko temporarily store karta hai matlab browser band hua or data gaya.
+
+methods used in `sessionStorage` is same as `localStorage`.
+
+> `localStorage` and `sessionStorage` stores approx 5MB data.
+
+### COOKIES 
+yeh bhi data store karta hai par yeh data aapke browser ki cookie naam ki property mai save ho jata hai jo property banayi gyi thi kam data store karne ke liye.
+
+> `cookies` stores approx 4 KB data.
+
+cookies mai tum jo bhi data store karonge woh reload hone ke baad automatically server par chala jaega.
+
+to add a cookie in your website,
+```javascript
+document.cookie("name=priya");
+```
+this will create a cookie named `name` having value `priya`.
+
+> **if we try to save data in `localStorage` other than strings then we will face many difficulties**
+ array will become a string itself and object will return a value [object, Object].
+
+>is sai bachne k liye ham phle us data ko `JSON.stringify` sai string mai convert kardenge or firr jb hme usko use karna hoga toh usko `JSON.parse` sai waps us particular object type mai le aaynge.
+
+## DARK OR LIGHT MODE DETECTOR
+to detect the theme of user. you may use `window.matchMedia("(prefers-color-scheme: dark")`
+
+if you want to add function like if the screen is dark then a dark class will be applied to body which changes the theme of the website into dark
+
+```javascript
+function setDarkOrLight() {
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+    } else {
+        document.body.classList.add("light"); 
+        document.body.classList.remove("dark");
+    };
+};
+```
