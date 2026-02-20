@@ -1,4 +1,4 @@
-# JAVASCRIPT ADV NOTES
+# JAVASCRIPT ADV NOTES PART-2
 
 `Document Object Model`
 everything you see in your website is a part of DOM.
@@ -652,3 +652,184 @@ function setDarkOrLight() {
 ```
 > `localStorage` is able to store only string data not others because it's API is build only or strings.
 
+# JAVASCRIPT ADV PART-3
+
+## SCOPE, EXECUTION CONTEXT, CLOSURES.
+
+### SCOPE
+
+it is like ki aap apne created variable and functions ko kha tak use kar skte ho.
+
+- FUNCTIONAL SCOPE
+
+    function ke andr hi excessable ho. 
+
+    example:- 
+    ```javascript
+    function(){
+        var a = 12;
+    };
+    ```
+       
+- GLOBAL SCOPE
+
+    pure code mai kahi bhi use ho ski hai.
+    ```javascript
+    var a = 12;
+    ``` 
+
+    that means agr aapka code kisi {} ke andr nahi hai toh wo globally scopped hai. 
+
+- LOCAL SCOPE
+    
+    curly braces `{}` mai hi use ho skati hai. 
+
+    ```javascript
+    {
+        var a =12;
+    }
+    ```
+    or 
+    ```javascript
+    if(){
+        var a = 12;
+    }
+    ```
+---
+
+- LEXICAL SCOPE
+
+    we use lexical scope in our javascript. 
+
+    it's basically like aap kaha par physicaly available ho ye poori tareeke se depend krta hai ki aap kya access kr paoge. for example:-
+
+    ```javascript
+    function abcd(){
+        let a = 12;
+        function defg(){
+            console.log(a);
+        };
+    };
+    ```
+    here variable `a` is in the function `abcd` toh ham usko pure abcd function ke andr access kar sakte hai. us function ke andr ek or function ho toh usme bhi.
+
+
+- DYNAMIC SCOPE
+
+    matlab variable ko kaha se call kar rahe ho uspe depend karta hai. for example:-
+
+    ```javascript
+    let a = 12;
+    function abcd(){
+        console.log(a);
+    }
+    funcion defg(){
+        let a = 13;
+        abcd();
+    };
+    defg();
+    ```
+
+    in this code. 
+    
+    agr js dynamically scopped hota toh jb function `defg` chlta toh usme `abcd` function chalta or `defg` function mai `a` ki assigned value 13 hai mtlb console window pe  log hoga 13.
+
+
+
+###  EXECUTION CONTEXT
+
+it's an abstract. 
+ 
+js sabse pahle jaise hi aapka function dekhta hai sabse phle js banata hai execution context (generally like a hypothetical container), jisme aapke functions ka sara data store hota hai and ye ek process hai jo ki do different phases mai chalta hai. ek ka naam hai memory phase or dusre ka naam hai execution phase.   
+
+### CLOSURES
+
+closures hote hai functions, jo ki kisi parent function ke andr ho, or andr wala function return ho raha ho, and returning function use kare parent function ka koi variable.
+
+```javascript
+function abcd(){
+    let a = 12;
+    return function(){
+        console.log(a);
+    };
+};
+```
+
+- **ADVANTAGES**
+
+    - can private variables
+    - global pollution
+
+- **HOW VARIABLES ARE PRESERVED.**
+
+    jab aap abcd ko chalaoge toh woh function return karega or khud khatam ho jaega. pr agr khud ktm hogya tohh uske andr ka variable bhi khatam ho jana chahiye or agr esa hua toh a not defined aana chahiye pr esa nahi hota.
+
+    > ye sach hai ki function ke khatam hone pr wo function or uske variables khatam ho jate hai pr jab bhi closure bnta hai to us function or uske variables ka ek backlink banaya jata hai (kind of a copy) or uska naam hota hai [[environment]].
+
+
+    ---
+
+    #### PRIVATE COUNTER
+
+    ```javascript
+    function count(){
+        let c = 0;
+        return function(){
+            c++;
+            console.log(c);
+        }
+    }
+
+    let fnc = count();
+    fnc();
+    fnc();
+    fnc();
+
+    let fnc2 = count();
+    fnc2();
+    fnc2();
+    fnc2();
+    fnc2();
+    fnc2();
+    fnc2();
+    ```
+
+    in the above example, a function `count` is created and fount tobe a closure this means at the time of calling `count()` it will not return the value of c but returns that closure function. for logging the value of c it is needed that a new variable has to be created for count calling and when we created that variable `fnc` a new space is created for closure(execution context) and the c variable is saved in it. or jab hmne second variable `fnc2` create kiya toh uske liye ek or space create hua jisme firse c ki value 0 thi. tohh hme output milega
+
+    ```javascript
+    1
+    2
+    3
+    1
+    2
+    3
+    4
+    5
+    6
+    ```
+
+    #### ENCAPSULATION
+
+    ```javascript
+    function clickLimiter(){
+        let click = 0
+        return function(){
+            if(click<5){
+                click++;
+                console.log(`clicked: ${click}times`);
+            }else{
+                console.error("you have reached click limit.");
+            };
+        };
+    };
+
+    let fnc = clickLimiter();
+    fnc();
+    fnc();
+    fnc();
+    fnc();
+    fnc();
+    fnc();
+    ```
+    
+    is function mai ek function scopped variable hai count jiski startting value assigned ki gyi h 0 and jb bhi  hm fnc call krenge toh click ki value +1 hojaegi for count < 5. if we try to change the value o click globally or outside that function it will not work as we have assigned the value. 
