@@ -316,4 +316,3 @@ this will give an error kyuki aap ek sathh declare krke un variable ko use nhi k
 A kind of mathematical operations.
 
 `a + b` here `a` and `b` are operand 1 and operand 2 respectively. and `+` is the operator.
-
