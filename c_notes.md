@@ -804,4 +804,51 @@ agr hr case ke baad break nahi lgaya tohh jis case mai condition satisfy horhi h
 - cases can be in any order.
 - nested switch (switch inside a switch) is allowed.
 
-2:26:43
+---
+### WRITE A CODE TO CHECK IF THE GIVEN CHARACTER IS AN UPPERCASE CHARACTER OR A LOWERCASE CHARACTER.
+
+```c
+#include<stdio.h>
+
+int main(){
+    char character;
+    printf("enter a character: ");
+    scanf("%c", &character);
+
+    if(character>= 'A' && character<= 'Z'){
+        printf("uppercase \n");
+    }
+    else if(character>= 'a' && character<= 'z'){
+        printf("lowercase \n");
+    }else{
+        printf("not a english letter");
+    };
+}
+```
+---
+
+### WRITE A CODE TO CHECK IF A NUMBER IS AN ARMSTRONG NUMBER OR NOT.
+
+---
+
+## LOOP CONTROL INSTRUCTIONS
+
+if there is a condition when we need to repeat a particular code for a multiple times. to save the time we use loops.
+
+there are three types of loops:-
+
+1. **for loop**
+2. **while loop**
+3. **do-while loop**
+
+---
+### FOR LOOP IN C LANGUAGE
+
+```c
+for(initialisation ; condition ; updation){
+    // do some work here
+};
+```
+- the work of initialisation statement is to initial the loop. here we create a variable and give its starting position from where it should start. `int i = 0` 
+
+2:50:02
