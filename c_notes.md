@@ -851,4 +851,496 @@ for(initialisation ; condition ; updation){
 ```
 - the work of initialisation statement is to initial the loop. here we create a variable and give its starting position from where it should start. `int i = 0` 
 
-2:50:02
+- condition means kya condition satisfy honi chahiye `i` ki taki loop run kre. or jab woh condition meet nahi hogi tohh loop rukjaega. `i<=5`
+
+- updation mtlb har baar jab loop chle uske baad `i` ki value mai kya changes aane chahiye. `i++`
+
+let's understand with an example:-
+
+```c
+for(let i = 0; i<=5; i++){
+    printf("hello world\n");
+}
+```
+
+in this code, the code starts with `i = 0` mtlb jb hmne code start kiya toh jo hmne ek random variable liya hai hmne uska naam i rkhdiya then us variable ko declare krke uski value assign krni 0 ke equal. then for loop mai condition check hogi or is loop ki condition hai `i<=5` mtlb i ki value less than or equal to 5 honi chahiye tbhi condition true hogi or loop run krega or jo loop k andr printf ki statement run hogi then runn hone k baad i ki value update hogi +1 se as `i++` is written in the updation part, and i ki value aab 1 hojaegi then yeh condition check hona print hona repeat hoga jbtk condition false nhi ho jati and output will be:-
+
+```c
+hello world
+hello world
+hello world
+hello world
+hello world
+hello world
+```
+> here `i` variable is also called iterator / counter.
+
+---
+### print the numbers from 0 to 10.
+
+```c
+#include<stdio.h>
+
+int main(){
+    for(int i = 0; i<=10; i++){
+        printf("%d \n" , i);
+    };
+}
+```
+here the output will be;
+
+```c
+0 
+1 
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
+---
+
+### INCREMENT OPERATORS
+
+- `i++` - (pre-increment) - use then increase
+
+    - mtlb i ki value ko phle use krlo then uski value mai 1 increase krdo. example:-
+
+        ```c
+        #include<stdio.h>
+
+        int main(){
+            int i = 1;
+            printf("%d \n" , i++);
+            printf("%d" , i);
+        }
+        ```
+        is statement mai hmne phle i ki value assign krayi = 1 and then i++ print kraya mtlb phle i ki original value print hojaegi or i ki original value mai 1 add hoajega or jb hm next time i variable ko use krenge to hme 2 milega. toh mtlb is code ka output hoga:-
+
+        ```c
+        1
+        2
+        ```
+
+- `++i` - (post-increment) - increase then use
+
+    - this operator first increase the value of the variable by one and then use that increased value.
+
+        ```c
+        #include<stdio.h>
+
+        int main(){
+            int i = 1;
+            printf("%d \n" , ++i);
+            printf("%d" , i);
+        }
+        ```
+        the output of this code will be 
+        ```c
+        2
+        2
+        ```
+
+- `i--` - (pre-decrement) - decrease then use
+
+    - this operator is same as i++ bss usme +1 hojata tha variable mai or isme -1 hota hai.
+
+        ```c
+        #include<stdio.h>
+
+        int main(){
+            int i = 5;
+            printf("%d \n" , i--);
+            printf("%d" , i);
+        }
+        ```
+        output will be=
+        ```c
+        5
+        4
+        ```
+
+- `--i`- (post-decrement)  use then decrease
+
+    - this operator first decrease the value of the variable and then uses the decreased value.
+
+        ```c
+        #include<stdio.h>
+
+        int main(){
+            int i = 5;
+            printf("%d \n" , --i);
+            printf("%d" , i);
+        }
+        ```
+
+        output will be 
+        ```c
+        4
+        4
+        ```
+---
+
+>the value of i can be a float or a character value.
+
+---
+### PRINT CHARACTER FROM 'a' TO 'z'
+```c
+#include<stdio.h>
+int main(){
+for(char ch = 'a'; ch <='z' ; ch++){
+    printf("%c \n", ch);
+};
+}
+```
+> characters itself have ASCII value means all characters have interger value like 'a' can also be written as `int(97)` so we can handle them as an integer.
+
+---
+### INFINITE LOOP
+
+WHEN the loop does't know the ending then it becomes an infinite loop and wo tbtk chalta rhega jbtk computer ki memory full na ho jae.
+
+```c
+#include<stdio.h>
+int main(){
+for(int i = 1; ; i++){
+    printf("%d \n", i);
+};
+}
+```
+
+---
+### WHILE LOOP
+
+```c
+while(condition){
+    //do some work
+};
+```
+while loop means jbtk condition false na hojae jbtk andr ki statement ko chalate rho.
+
+like jabtk sham na hojae tbtk dodte rho.
+
+```c
+#include<stdio.h>
+
+int main(){
+    int i = 0;
+    while(i <=5){
+        printf("%d \n" , i);
+        i++;
+    };
+}
+```
+while loop mai hme variable loop ke bahr karna pdta hai or condition statement () mai likhte hai or{} mai woh statement likhte hai jo hme us condition ke meet hone pr krwani hai. and code ke end mai hi updation statement likhte hai compiler code ko line by line run krta hai or puri statement ke baad variable ki value update krdeta hai.
+
+---
+### print the value from 0 to n when the value of n is given by the user.
+
+```c
+#include<stdio.h>
+
+int main(){
+    int num = 0;
+    int i;
+    printf("enter any number :");
+    scanf("%d" , &i);
+
+    while (num<=i)
+    {
+        printf("%d \n" , num);
+        num++;
+    }
+}
+```
+---
+### DO-WHILE LOOP
+
+```c
+do{
+    //do some work
+}while(condition);
+```
+
+yeh generally while loop jesa hi hota hai pr while loop mai phle condition check hoti hai phir agr condition meet hogi tohh loop k andr ki statement chlegi nhi toh nhi chlegi. pr do-while loop mai ek baar statement run hoti hai or firr condition check hoti hai or is time agr ocndition meet hui toh run hogi nhi toh loop bus ek baar run hoke rh jaega.
+
+```c
+#include<stdio.h>
+
+int main(){
+    int num = 0;
+    do
+    {
+        printf("%d" , num);
+        num++;
+    } while (num >=2);
+    
+}
+```
+output will be
+`0`
+
+---
+### print the sum of first n natural numbers where the given value of n = 4
+
+from for loop
+
+```c
+#include<stdio.h>
+
+int main(){
+    int n = 4;
+    int sum = 0;
+    for(int i = 1; i <= n; i++){
+        sum += i;
+    }
+    printf("sum = %d \n" , sum);
+}
+```
+from while loop
+```c
+#include<stdio.h>
+
+int main(){
+    int n = 4;
+    int i = 1;
+    int sum = 0;
+    while(i<=n){
+        sum += i;
+        i++;
+    }
+    printf("sum = %d \n" , sum);
+}
+```
+---
+### PRINT THE TABLE OF THE NUMBER WHOSE VALUE IS GIVEN BY USER.
+
+```c
+#include<stdio.h>
+
+int main(){
+    int n;
+    printf("enter any number :");
+    scanf("%d" , &n);
+
+    for (int i = 1 ; i <=10 ; i++){
+        printf("%d x %d = %d \n" , n , i , n*i );
+    }
+}
+```
+
+output:
+
+```c
+enter any number :2
+2 x 1 = 2 
+2 x 2 = 4
+2 x 3 = 6
+2 x 4 = 8
+2 x 5 = 10
+2 x 6 = 12
+2 x 7 = 14
+2 x 8 = 16
+2 x 9 = 18
+2 x 10 = 20
+```
+---
+## BREAK STATEMENT
+break statement is used to exit the loop.
+```c
+#include<stdio.h>
+
+int main(){
+    for (int i = 1 ; i <=5 ; i++){
+        if(i==3){
+            break;
+        };
+        printf("%d \n" , i);
+    }
+}
+```
+is code mai i ki value =5 hone tak loop chalna tha pr ek if condition lagi hui hai ki agr i ki value 3 ke equal aae toh loop ko break krdo. mtlb is code ka output aaega
+
+```c
+1
+2
+```
+---
+### KEEP TAKING THE INPUT FROM THE USER UNTIL THE VALUE IS AN EVEN NUMBER.
+```c
+#include<stdio.h>
+
+int main(){
+    int n;
+    do
+    {
+        printf("enter a number :");
+        scanf("%d" , &n);
+        
+        if(n%2 == 0){
+            printf("end");
+            break;
+        }
+    } while (1);
+}
+```
+---
+### CONTINUE STATEMENT
+
+CONTINUE statement ka mtlb us particular variable ki value p aage ke code ko skip kro or loop ko aage continue kro.
+
+---
+### PRINT THE NUMBER FROM 0 TO 10 EXCEPT 4
+
+```c
+#include<stdio.h>
+
+int main(){
+    for(int i = 1; i<=10; i++){
+        if(i==4) continue;
+        printf("%d \n" , i);
+    }
+    return 0 ;
+}
+```
+---
+### PRINT ALL THE ODD NUMBERS BETWEEN 5 TO 50
+```c
+#include<stdio.h>
+
+int main(){
+    for(int i = 5; i<=50; i++){
+        if(i%2==0) continue;
+        printf("%d \n" , i);
+    }
+    return 0 ;
+}
+```
+---
+### PRINT THE FACTORIAL OF THE NUMBER n.
+```c
+#include<stdio.h>
+
+int main(){
+    int n;
+    printf("enter a number :");
+    scanf("%d" , &n);
+
+    int factorial = 1;
+
+    for(int i = n; i>=1; i--){
+        printf("%d" , i);
+
+        if(i!=1) printf("x");
+        factorial*=i;
+    }
+    printf(" = %d", factorial);
+    return 0 ;
+}
+```
+IS CODE KO SIRF CHOTE NUMBERS KE SATH HI TEST KRSKTE HAI KYUKI FACTORIAL KI VALUE EXPONENTIALLY BADHTI HAI OR ITNI BDI VALUE FIRR `INT` MAI STORE NHI HO PAEGI OR RETURN M OUTPUT MILEGA 0.
+
+---
+## FUNCTION AND RECURSION
+
+A function is a block of code that performs a particular task.
+
+takes arguement => do work => give result.
+
+it can be used multiple times.
+
+**there are three steps to create a function:-**
+- **function prototype/ function declaration:-**
+    ```c
+    void printHello();
+    ```
+    the name of the function can be anything means it is a variable.
+
+- **function defination:-**
+    ```c
+    void printHello(){
+        printf("hello world \n");
+    };
+    ```
+- **function call**
+    ```c
+    #include<stdio.h>
+
+    int main(){
+        printHello();
+        return 0;
+    }
+    ```
+all together:-
+
+```c
+#include<stdio.h>
+void printHello();      //function declaration
+
+int main(){
+    printHello();       //function call
+    return 0;
+}
+
+void printHello(){
+    printf("hello world \n");       //function defination
+};
+```
+you can call a function multiple times.
+
+---
+### PROPERTIES
+
+- excecution always starts from main.
+- a function gets called directly or indirectly form main.
+- there will be multiple functions in a program.
+---
+### TYPES OF FUNCTIONS
+
+funtions are of two types:-
+- user defined function
+
+    - they are declared and defined by user.
+    - example:- `printHello();` that we have created above.
+- library functions
+
+    - they are the inbuilt function which are built in C.
+    - example:- `printf();` `scanf();`
+---
+### PASSING ARGUEMENTS
+
+function can take values & give some value.
+
+- the values taken - parameters
+- gives a value - arguments/ return value
+
+---
+```c
+void printHello();     //1
+
+void printTable(int n);         //2
+
+int sum(int a, int b);         //3
+```
+1. in the first code; function na koi arguement leta hai na hi koi value return krta hai. 
+2. 2nd mai; function parameters leta hai koi value leta hai pr return nhi krta.
+3. and the last one takes parameter and return integer value.
+
+> main function mai hm jo variable use krte hai wohh hota hai main variable or arguement or jo variable jo hm function defination ke time use krte hai use khte hai parameters.
+
+### difference between PARAMETERS AND ARGUEMENTS
+
+|ARGUEMENTS|PARAMETERS|
+|:----:|:----:|
+|values that are passed in function call|values in function declaration and defination|
+|used to send value|used to receive value|
+|actual parameter|formal parameters|
+
+### NOTE
+
+- function can only return one value at a time.
+- changes in parameters in function don't change the value in calling function. because a copy of the arguement is passed to the function.
