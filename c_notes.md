@@ -1344,3 +1344,156 @@ int sum(int a, int b);         //3
 
 - function can only return one value at a time.
 - changes in parameters in function don't change the value in calling function. because a copy of the arguement is passed to the function.
+
+    - mtlb agr hm main function ke kisi variable ko user defined function mai change krenge yah update krenge tohh wo sirf function ke andr hi valid rhega main function mai us value mai koi change nhi aaega.
+---
+### USE LIBRARY FUNCTION TO CALCULATE THE SQUARE OF A GIVEN NUMBER.
+
+```c
+#include<stdio.h>
+#include<math.h>
+int numSquare(int num);      //function declaration
+
+int main(){
+    int num;
+    printf("enter a number :");
+    scanf("%d" , &num);
+    numSquare(num);       //function call
+    return 0;
+}
+
+int numSquare(int num){
+    int square;
+    square = pow(num, 2);
+    printf("the square of %d is %d" , num , square);       //function defination
+};
+```
+---
+### WRITE A FUNCTION TO CALCULATE THE AREA OF SQUARE CIRCLE AND A RECTANGLE.
+
+```c
+#include<stdio.h>
+#include<math.h>
+
+int areaSquare(int side);
+int areaCircle(int radius);
+int areaRectangle(int length, int breadth);
+
+int main(){
+    int side, radius, length, breadth;
+    char type;
+    printf("enter 's' for square; 'c' for circle; 'r' for rectangle :");
+    scanf("%c", &type);
+
+    switch(type){
+        case 's':printf("enter the value of side :");
+                scanf("%d" , &side);
+                areaSquare(side);
+                break;
+
+        case 'c':printf("enter the radius of the circle :");
+                scanf("%d" , &radius);
+                areaCircle(radius);
+                break;
+
+        case 'r':printf("enter the length of the rectangle");
+                scanf("%d" , &length);
+                printf("enter the breadth of the rectangle");
+                scanf("%d" , &breadth);
+                areaRectangle(length, breadth);
+                break;
+
+        default: printf("enter a valid alphabet.");
+    }
+}
+
+int areaSquare(int side){
+    int area = side*side;
+    printf("the area of given square of side %d is %d", side , area);
+}
+
+int areaRectangle(int length, int breadth){
+    int area = length*breadth;
+    printf("the area of the rectangle of given length %d and breadth %d is %d" , length , breadth , area);
+}
+
+int areaCircle(int radius){
+    float area = (3.14)*(pow(radius, 2));
+    printf("the area of the circle of radius %d is %f", radius , area);
+}
+```
+---
+## RECURSION
+
+when a function calls itself, it is called recursion.
+
+> the work which can be done by function can also be done by recursion and vice versa. but sometimes we need to write a huge line of codes to excecute a program but from recursion it can be done in a simpler way.
+
+for example:-
+```c
+#include<stdio.h>
+
+void printHW(int count);
+
+int main(){
+    int count;
+    printf("enter a number :");
+    scanf("%d" , &count);
+    printHW(count);
+    return 0;
+}
+
+void printHW(int count){
+    if(count == 0) return;
+    printf("hello world \n");
+    printHW(count-1);
+}
+```
+---
+### FIND THE SUM OF FIRST N NATURAL NUMBERS USING RESURSION.
+
+```c
+#include<stdio.h>
+
+int sum(int n);
+
+int main(){
+    printf("%d" , sum(5));
+    return 0;
+}
+
+int sum(int n){
+    if(n == 1) return 1;
+    int sumNm1 = sum(n-1);
+    int sumN = sumNm1 + n;
+    return sumN;
+}
+```
+---
+### FIND THE FACTORIAL OF N.
+
+```c
+#include<stdio.h>
+
+int factorial(int n);
+
+int main(){
+    int num;
+    printf("enter a number :");
+    scanf("%d" , &num);
+    printf("%d" , factorial(num));
+
+    return 0;
+}
+
+int factorial(int n){
+    if (n == 1) return 1;
+    return factorial(n-1)*n;
+}
+```
+---
+### PROPERTIES OF RECURSION
+
+- recursion can sometimes give the most simple solution.
+- `base case` is the condition which stops recursion.
+- iteration has infinite loop & recursion has `stack overflow`.
