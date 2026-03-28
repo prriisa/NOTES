@@ -1497,3 +1497,187 @@ int factorial(int n){
 - recursion can sometimes give the most simple solution.
 - `base case` is the condition which stops recursion.
 - iteration has infinite loop & recursion has `stack overflow`.
+---
+### PRINT THE FIBONACCI SERIES FOR FIRST NTH TERM.
+
+**FIBONACCI SERIES IS LIKE `0,1,1,2,3,5,8,13,21...`**
+
+```c
+#include<stdio.h>
+
+int fibonacciSeries(int n);
+
+int main(){
+    int n;
+    printf("enter the position of the last number :");
+    scanf("%d" , &n);
+    
+    for(int i = 0; i <= n ; i++){
+        if(i ==n ){
+            printf("%d" , fibonacciSeries(i));
+        }else{
+        printf("%d , " , fibonacciSeries(i));
+        }
+    }
+    return 0;
+}
+
+int fibonacciSeries(int n){
+
+    if(n==0) return 0;
+    if(n==1) return 1;
+
+    int fibNm1 = fibonacciSeries(n-1);
+    int fibNm2 = fibonacciSeries(n-2);
+    int fibN = fibNm1+ fibNm2;
+
+    return fibN;
+}
+```
+---
+### WRITE A FUNCTION TO FIND THE SUM OF DIGITS OF A NUMBER.
+
+```c
+#include<stdio.h>
+int sum(int num);
+
+int main(){
+    int num;
+    printf("enter a number to calculate its sum. :");
+    scanf("%d" , &num);
+    printf("%d" , sum(num));
+}
+int sum(int num){
+    if(num == 0) return 0;
+
+    return num%10 + sum(num/10);
+}
+```
+---
+## PRINTERS
+
+A variable that stores the memory address of the different(another) variable.
+
+```c
+int age = 22;
+int *ptr = &age;
+int _age = *ptr;
+```
+> `*` stands for value at address
+
+>`&` stands for address of operator.
+---
+### DECLARING POINTERS
+
+```c
+int *ptr;       //this will store address of integer value
+char *ptr;      //this will store address of character value
+float *ptr;     //this will store address of float value
+```
+---
+### FORMAT SPECIFIER
+
+```c
+printf("%p" , &age);        //address of age will be printed
+printf("%p" , ptr);     //address of variable stored in ptr will be printed
+printf("%p" , &ptr);        //address of ptr will be printed
+```
+> for getting address as an output we need to use `%p` which is used to save hexa-decimal values.
+`%u` is used to get the output in integer form, which is mainly used for unsigned integers.
+
+```c
+printf("%d" , age);         //this will print the value of age
+printf("%d" , *ptr);        //this will print the value of the variable stored in ptr
+printf("%d" , *(&age));     //first & gives the address of age, after that * will print the value at that address means the value of age will be printed here
+```
+---
+### POINTER TO POINTER
+
+A variable that stores the memory address of another pointer.
+
+**syntax**
+
+```c
+int **pptr;
+char **pptr;
+float **pptr;
+```
+---
+## POINTERS IN FUNCTION CALL
+
+1. **CALL BY VALUE**
+    - we pass value of variable as arguement.
+
+    ```c
+    #include<stdio.h>
+
+    int sum(int n);
+
+    int main(){
+        int number = 15;
+        sum(number);
+        printf("number is %d \n" , number);
+    }
+
+    int sum(int n){
+        n = n*n;
+        printf("sum is %d \n" , n);
+    }
+    ```
+    output will be 
+    ```c
+    sum is 225 
+    number is 15 
+    ```
+    means call by value mai hm reference share nhi krte jis se hmare original variable pai function ka koi effect nhi pdta.
+
+2. **CALL BY REFERENCE**
+    - we pass address of variable as argument.
+
+    ```c
+    #include<stdio.h>
+
+    int sum(int *n);
+
+    int main(){
+        int number = 15;
+        sum(number);
+        printf("number is %d \n" , number);
+    }
+
+    int sum(int *n){
+        *n = (*n)*(*n);
+        printf("sum is %d \n" , *n);
+    }
+    ```
+    now the output will be
+    ```c
+    sum is 225 
+    number is 225
+    ```
+---
+### SWAP 2 NUMBERS, A & B
+
+```c
+#include <stdio.h>
+
+int swap(int *a, int *b);
+
+int main()
+{
+    int a = 3, b = 5;
+    swap(&a, &b);
+    printf("x = %d & y = %d \n", a, b);
+
+    return 0;
+}
+
+int swap(int *a, int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+    printf("a = %d & b = %d \n", *a, *b);
+}
+```
+6:18:30
