@@ -1680,4 +1680,150 @@ int swap(int *a, int *b)
     printf("a = %d & b = %d \n", *a, *b);
 }
 ```
-6:18:30
+---
+## ARRAYS
+
+collection of similar data types stored at contiguous memory locations.
+
+mtlb it is a kind of collection of similar data types.
+
+```c
+int marks[] = {12, 42, 15};
+```
+
+### SYNTAX
+
+```c
+int marks[3];           //this array store 3 integer value every block containing 4 bytes storage.
+char name[10];          // this array stores 10 characters
+float price[2];         // this array stores 2 float values
+```
+
+`base indexing = 0`
+if there are 3 values in an array then first number has an index value 0, second one has index value 1, and 2 for the third one.
+---
+### INPUT & OUTPUT
+
+```c
+scanf("%d" , &marks[0]);        //this will take an input and store it on the 0th index of marks array.
+printf("%d" , marks[0]);        //this will print the 0th value of marks
+```
+---
+### WRITE A PROGRAM TO ENTER THE PRICE OF 3 ITEMS & PRINT THEIR FINAL COST WITH GST.
+
+```c
+#include<stdio.h>
+
+int main(){
+    int price[3];
+
+    printf("enter the price of 1st product :");
+    scanf("%d" , &price[0]);
+
+    printf("enter the price of 2nd product :");
+    scanf("%d" , &price[1]);
+
+    printf("enter the price of 3rd product :");
+    scanf("%d" , &price[2]);
+
+    int totalPrice = price[0] + price[1] + price[2];
+    float gst = 0.18 * totalPrice;
+
+    printf("your total price with GST = %f" , totalPrice + gst);
+}
+```
+---
+### INITIALIZATION OF ARRAY
+```c
+int marks[] = {97 ,77 ,79};
+
+int marks[3] = {97, 77, 79};
+```
+---
+### POINTER ARITHMETIC
+
+pointer can be incremented & decremented
+
+**CASE-1**
+```c
+int age = 22;
+int *ptr = &age;
+ptr++;
+```
+is code ka simple mtlb ye h ki hmne phle age ki value 22 assign ki then uske address ko pointer variable me store kraya; agr hm ptr++ yah ptr-- mai se koi function perform krte hai toh pointer variable usme jo variable hai uski value mai +1 store nhi krti h blki uski jo variable ki jo memory location hai usko 4 bytes se increase yah decrease kr deti h...let's understand with an example:-
+```c
+#include<stdio.h>
+
+int main(){
+    int age = 22;
+    int *ptr = &age;
+    printf("%u \n" , ptr);          //prints the current memory location of variable age
+
+    ptr++;
+    printf("%u \n" , ptr);          //prints the increased memory location of age by 4 bytes
+
+    ptr--;
+    printf("%u \n" , ptr);          //prints the decreased memory location of age by 4 bytes
+
+}
+```
+then the output will be;
+
+```c
+6422296 
+6422300 
+6422296
+```
+
+**CASE-2**
+```c
+float price = 20.00;
+float *ptr = &price;
+ptr++;
+```
+yebhi same waise hi work krega integer ki trh because both have 4 bytes of memory storage value
+**CASE-3**
+```c
+char star = '*';
+char *ptr = &star;
+ptr++;
+```
+in this case the memory get increased by 1 as character stores 1 byte of memory.
+
+---
+- we can also sbutract one pointer from another.
+- we can also compare 2 pointers of same type.
+---
+### ARRAY IS A POINTER 
+```c
+int *ptr = %arr[0];
+        OR
+int *ptr = arr;
+```
+BOTH ARE SAME AS THE ARRAY ITSELF IS A POINTER WHICH LOCATED THE ADDRES OF ITS FIRST INDEX VALUE AS A POINTER.
+
+---
+### TRAVERSE AN ARRAY
+```c
+int aadhar[10];
+int *ptr = &aadhar[0];
+```
+---
+### print every value of array using pointer.
+
+```c
+#include<stdio.h>
+
+int main(){
+    int aadhar[5];
+
+    int *ptr = &aadhar[0];
+    for(int i = 0 ; i < 10 ; i++){
+        printf("%d index : ", i);
+        scanf("%d" , (ptr+i));
+    
+    }
+    return 0 ;
+}
+```
+6:47:25
