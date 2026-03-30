@@ -1699,7 +1699,7 @@ char name[10];          // this array stores 10 characters
 float price[2];         // this array stores 2 float values
 ```
 
-`base indexing = 0`
+> base indexing = 0
 if there are 3 values in an array then first number has an index value 0, second one has index value 1, and 2 for the third one.
 ---
 ### INPUT & OUTPUT
@@ -1823,7 +1823,193 @@ int main(){
         scanf("%d" , (ptr+i));
     
     }
+
+    for(int i = 0; i<10; i++){
+        printf("%d index = %d ", i , *(ptr+i));
+    }
     return 0 ;
 }
 ```
-6:47:25
+---
+### ARRAYS AS FUNCTION ARGUEMENT
+
+#### FUNCTION DECLARATTION
+```c
+void printNumbers(int arr[] , int n);
+``` 
+OR
+```c
+void printNumbers(int *arr , int n);
+```
+#### FUNCTION CALL
+```c
+printNumbers(arr , n);
+```
+let's understand with an example:-
+```c
+#include<stdio.h>
+
+void printNumbers(int arr[] , int n);
+
+int main(){
+    int arr[] = {2, 4, 6, 8, 10};
+    printNumbers(arr , 4);
+
+    return 0;
+}
+
+void printNumbers(int arr[] , int n){
+    for(int i = 0 ; i<=n ; i++){
+        printf("%d \t" , arr[i]);
+    }
+}
+```
+output will be:- `2      4       6       8       10`
+---
+### MULTIDIMENSIONAL ARRAYS
+#### 2D ARRAYS
+```c
+int arr[][] = {{1,2},{3,4}};
+```
+**TO ACCESS**
+```c
+arr[0][0];      //1
+arr[0][1];      //2
+arr[1][0];      //3
+arr[1][1];      //4
+```
+---
+#### WRITE A FUNCTION TO PRINT THE ODD NUMBERS IN AN ARRAY.
+
+```c
+#include<stdio.h>
+
+int countOdd(int arr[] , int n);
+
+int main(){
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    countOdd(arr , 10);
+}
+
+int countOdd(int arr[] , int n){
+    for(int i = 0 ; i<= n ; i++){
+        if(arr[i] % 2 == 0){
+            continue;
+        }else{
+            printf("%d \t" , arr[i]);
+        }
+    }
+}
+```
+---
+#### WRITE A FUNCTION TO REVERSE AN ARRAY
+
+```c
+#include<stdio.h>
+
+int reverseArr(int arr[] , int n);
+void printArr(int arr[] , int n);
+
+int main(){
+    int arr[] = {1,2,3,4,5,6};
+    reverseArr(arr , 6);
+    printArr(arr , 6);
+    return 0;
+}
+
+int reverseArr(int arr[] , int n){
+    for(int i = 0 ; i < (n/2) ; i++){
+        int firstVal = arr[i];
+        int secondVal = arr[n-i-1];
+
+        arr[i] = secondVal;
+        arr[n-i-1] = firstVal;
+    }
+}
+
+void printArr(int arr[] , int n){
+    for(int i = 0 ; i< n ; i++){
+        printf("%d" , arr[i]);
+    }
+}
+```
+> this shows that a array only uses call by reference as when we make any changes to an array by making functions then the changes will also reflects in the original array. so keep in mind before using.
+
+---
+#### WRITE THE FUNCTION TO PRINT N NUMBER OF FIBONACCI SERIES.
+
+```c
+#include<stdio.h>
+
+int fibonacci(int n);
+
+int main(){
+    int length;
+    printf("enter the length of fibonacci series you want :");
+    scanf("%d" , &length);
+    fibonacci(length);
+
+    return 0;
+}
+
+int fibonacci(int n){
+    int arr[n];
+    for(int i = 0 ; i<=n ; i++){
+        if(i == 0){
+            arr[0] = 0 ; 
+        }
+        else if(i == 1){
+            arr[1] = 1;
+        }else{
+            arr[i] = arr[i-1] + arr[i-2];
+        }
+        printf("the value at index %d is %d \n" , i , arr[i]);
+    }
+}
+```
+---
+#### CREATE A 2D ARRAY, STORING THE TABLES OF 2,3 
+
+```c
+#include<stdio.h>
+
+int main(){
+    int table[2][10];
+    for(int i = 0; i<=9 ; i++){
+        table[0][i] = 2*(i+1);
+        table[1][i] = 3*(i+1);
+    }
+    for(int i = 0 ; i <= 1 ; i++){
+        for(int j = 0 ; j <= 9 ; j++){
+            printf("%d \n" ,table[i][j] );
+        }
+    }
+}
+```
+---
+## STRINGS
+a character array terminated by a '\0'(null character)
+
+null character denotes string termination
+
+example:-
+```c
+char name[] = {'p','r','i','y','a','\0'};
+char class[] = {'B','t','e','c','h','\0'};
+```
+### INITIALISING STRINGS
+```c
+char name[] = {'P','R','I','Y','A'};
+char name[] = {"priya"};
+```
+
+every letter occupy a particular memory location and in a string all characters have continuous memory location;
+
+|P|R|I|Y|A|\O|
+|:----:|:----:|:----:|:----:|:----:|:----:|
+2000|2001|2002|2003|2004|2005|
+---
+### create a string firstName and lastName to store details of user & print all the characters using a loop.
+
+```c
+7:29:12
