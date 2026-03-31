@@ -2012,4 +2012,239 @@ every letter occupy a particular memory location and in a string all characters 
 ### create a string firstName and lastName to store details of user & print all the characters using a loop.
 
 ```c
-7:29:12
+#include<stdio.h>
+
+int printName(char name[]);
+
+int main(){
+    char firstName[10], lastName[10];
+    int countName = 0 , countLastName = 0;
+
+    printf("enter your first name :");
+    scanf("%s" , &firstName);
+
+    printf("enter your last name :");
+    scanf("%s" , &lastName);
+
+    printName(firstName);
+    printf("\n");
+    printName(lastName);
+}
+
+int printName(char name[]){
+    for(int i = 0; name[i] != '\0'; i++){
+        printf("%c \n" , name[i]);
+    }
+}
+```
+---
+### STRING FORMAT SPECIFIER
+
+`%s`
+
+when ever we need to use a string character for printing or taking input or using it into another funtion we uses a new format specifier which is `%s` which knows the string values and is used in string operations.
+
+```c
+char name[] = "priya";
+printf("%s" , name);
+```
+---
+### DRAWBACK OF SCANF FOR STRING VALUES.
+
+`scanf()` cannot input multi-word strings with spaces. like;
+
+when you input a value in scanf() using `&s` like `it is a rainy day` it will only scan the first word of the paragraph. i.e. `it` and store it to the given variable and you won't be able to store more words in it.
+
+HERE; 
+`gets()` & `puts()` come into the picture.
+
+- `gets(str)` => inout a strings (even multiword).(dangerous & outdated)
+
+- `fgets(str , n , file)` => stops when n-1 char input or new line is entered.
+
+- `puts(str)` => output a string.
+
+```c
+#include <stdio.h>
+
+int main(){
+    char paragraph[100] ; 
+    printf("enter your paragraph :");
+    gets(paragraph);
+    puts(paragraph);
+}
+```
+this will take input for variable named paragraph and then print it back on the screen.
+
+but as we know `gets()` is dangerous as it is unable to count the string length entered and because of this it leads to get **hacked** by hackers. so we use `fgets()` in place of it.
+
+here, we need to enter the string name; variable maximum length; and file, currently enter `stdin` in its place, will discuss about it later.
+
+example:-
+
+```c
+#include <stdio.h>
+
+int main(){
+    char paragraph[100] ; 
+    printf("enter your paragraph :");
+    fgets(paragraph , 100 , stdin);
+    puts(paragraph);
+}
+```
+---
+### STRING USING POINTERS
+```c
+char *str = Hello world";
+```
+store string in memory & the assigned address is stored in the char pointer `str`
+
+```c
+char *str = "hello World";      //can be reinitialized
+
+char str[] = "hello world";     //cannot be reinitialized
+```
+---
+### STANDARD LIBRARY FUNCTIONS
+`<string.h>`
+
+1. **strlen(str)**
+
+    count number of characters excluding `\0`
+    ```c
+    #include<stdio.h>
+    #include<string.h>
+
+    int main(){
+        char *name = "priya";
+        int length = strlen(name);
+        printf("%d" , length);
+    }
+    ```
+
+2. **strcpy(newStr , oldStr)**
+
+    copies value of old string to new string
+
+    ```c
+    #include<stdio.h>
+    #include<string.h>
+
+    int main(){
+        char *name = "priya";
+        int length = strlen(name);
+        printf("%d" , length);
+    }
+    ```
+
+
+3. **strcat(firstStr , secStr)**
+
+    this will add 2 strings.
+
+    ```c
+    #include<stdio.h>
+    #include<string.h>
+
+    int main(){
+        char oldStr[100] = "oldStr";
+        char newStr[100] = "newStr";
+        strcat(newStr , oldStr);
+        printf(newStr);
+    }
+    ```
+    before concatination keep in mind that the first string should have the space to add the second one in it.
+
+4. **strcmp(firstStr , secStr)**
+
+    compare 2 strings & return a value.
+    - 0 -> string equal
+    - positive -> first > second (ASCII)
+    - negative -> first < second (ASCII)
+
+    ```c
+    #include<stdio.h>
+    #include<string.h>
+
+    int main(){
+        char firstStr[] = "Apple";
+        char secStr[] = "Banana";
+        printf("%d" , strcmp(firstStr , secStr));
+    }
+    ```
+---
+
+### TAKE A STRING INPUT FROM THE USER USING %c.
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    char str[100];
+    char ch;
+    int i = 0;
+    printf("enter your string :");
+
+    while(ch != '\n'){
+        scanf("%c" , &ch);
+        str[i] = ch;
+        i++;
+    }
+    str[i] = '\0';
+    printf(str);
+}
+```
+---
+### FIND THE SALTED FORM OF A PASSWORD ENTERED BY USER IF THE SALT IS "123" & ADDED AT THE END.
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+    char password[50];
+    char *salt = "123";
+    printf("enter your password :");
+    scanf("%s" , &password);
+    strcat(password , salt);
+    printf("final password: %s", password);   
+}
+```
+---
+### WRITE A FUNCTION NAMED SLICE, WHICH TAKES A STRING & RETURNS A SLICED STRING FROM INPUT n TO m.
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+void slice(char string[], int start , int end);
+
+int main(){
+    char string[100];
+    int start , end ;
+
+    printf("enter your string you want to slice: ");
+    fgets(string , 100 , stdin);
+    printf("enter the starting slice index: ");
+    scanf("%d" , &start);
+    printf("enter the ending slice index: ");
+    scanf("%d" , &end);
+
+    slice(string , start , end);
+    return 0;
+}
+
+void slice(char string[] , int start , int end){
+    char newstr[100];
+    int j = 0;
+
+    for(int i = start ; i <= end ; i++){
+        newstr[j++] = string[i];
+    }
+
+    newstr[j] = '\0';
+    printf("sliced string: %s", newstr);
+}
+```
+8:13:24
