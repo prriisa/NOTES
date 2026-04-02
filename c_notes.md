@@ -2223,28 +2223,275 @@ void slice(char string[], int start , int end);
 int main(){
     char string[100];
     int start , end ;
-
-    printf("enter your string you want to slice: ");
+    printf("enter your string you want to slice :");
     fgets(string , 100 , stdin);
-    printf("enter the starting slice index: ");
+
+    printf("enter the starting slice index :");
     scanf("%d" , &start);
-    printf("enter the ending slice index: ");
+    printf("enter the ending slice index :");
     scanf("%d" , &end);
 
     slice(string , start , end);
-    return 0;
 }
 
 void slice(char string[] , int start , int end){
     char newstr[100];
     int j = 0;
-
-    for(int i = start ; i <= end ; i++){
-        newstr[j++] = string[i];
+    for(int i = start; i <= end ; i++ , j++){
+        newstr[j] = string[i];
     }
-
     newstr[j] = '\0';
-    printf("sliced string: %s", newstr);
+    puts(newstr);
 }
 ```
-8:13:24
+---
+### WRITE THE FUNCTION TO COUNT THE OCCURRENCE OF VOWELS IN A STRING.
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+int countVowels(char string[]);
+
+int main(){
+    char str[100];
+
+    printf("enter your string :");
+    fgets(str , 100 , stdin);
+
+    countVowels(str);
+}
+
+int countVowels(char string[]){
+    int count = 0;
+    for(int i = 0 ; string[i] != '\0' ; i++){
+        if(string[i] == 'a' || string[i] == 'A' || string[i] == 'e' || string[i] == 'E' || string[i] == 'i' || string[i] == 'I' || string[i] == 'o' || string[i] == 'O' || string[i] == 'u' || string[i] == 'U'){
+            count++;
+        }
+    }
+    printf("the total number of vowels present in your string is : %d" , count);
+}
+```
+---
+### CHECK IF A GIVEN CHARACTER IS PRESENT IN A STRING OR NOT.
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+void findChar(char string[] , int ch);
+
+int main(){
+    char str[100] , ch;
+    printf("enter your string :");
+    fgets(str , 100 , stdin);
+    printf("enter the character you want to find :");
+    scanf("%c" , &ch);
+
+    findChar(str , ch);
+}
+
+void findChar( char string[] , int ch){
+    int charCount = 0;
+    for(int i = 0 ; string[i] != '\0' ; i++){
+        if(string[i] == ch){
+            charCount++;
+        }
+    }
+    if(charCount > 0){
+        printf("given character is present in the string %d times" , charCount);
+    }else{
+        printf("character is NOT present.");
+    }
+}
+```
+## STRUCTURES
+
+a collection of values of different data types
+
+example:-
+```
+name(string)
+class(number)
+roll no(number)
+```
+
+### SYNTAX
+
+```c
+struct student{
+    char name[100];
+    int roll;
+    float cgpa;
+};
+```
+> struct is a userdefined data type.
+
+how to use that data type
+```c
+struct student s1;
+s1.cgpa = 7.5;
+```
+means this will create a structure of student named s1 whose cgpa is 7.5
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+struct student{
+    char name[100];
+    int roll;
+    float cgpa;
+};
+
+int main(){
+    struct student s1;
+    strcpy(s1.name , "Priya Sharma");
+    s1.roll = 110040;
+    s1.cgpa = 9.1;
+
+    printf("student name = %s \n" , s1.name);
+    printf("student roll number = %d \n" , s1.roll);
+    printf("student cgpa = %f \n" , s1.cgpa);
+
+    return 0;
+}
+```
+---
+### STRUCTURES IN MEMORY
+
+memory alloted for the above structure is like:-
+
+name|roll|cgpa|
+|:----:|:----:|:----:|
+2010|2110|2114|
+
+as `char` takes 1 bit storage, `int` takes 4 bit storage.
+
+structures are stores in contiguous memory location
+---
+### BENIFITS OF STRUCTURES
+
+1. saves user from creating too many variable.
+2. good data management or organisation.
+---
+### ARRAY OF STRUCTURES
+
+```c
+struct student ECE[100];
+struct student COE[100];
+struct student IT[100];
+```
+TO ACCESS
+
+```c
+IT[0].roll = 200;
+IT[0].cgpa = 7.6;
+```
+---
+### INITIALIZING STRUCTURES
+
+```c
+struct student s1 = {"priya" , 110040 , 9.2};       //enter the data in sequence.
+
+struct student s2 = {"rajat" , 122506 , 7.4};
+
+struct student s3 = {0};        //this means every value of s3 is null
+```
+---
+### POINTER TO STRUCTURES
+
+```c
+struct student s1;
+struct student *ptr;
+ptr = &s1;
+```
+here first we have created a student structure for s1 and then created a pointer structure and then give the address of s1 to that pointer.
+---
+### ARROW OPERATOR
+
+`(*ptr).code` <---> `ptr->code`
+
+```c
+(*ptr).roll         //complicated way of writing
+ptr->roll           //arrow operator for simple coding
+```
+---
+### PASSING STRUCTURE TO FUNCTION
+
+```c
+void printInfo(struct student s1);
+```
+---
+
+## typedef KEYWORD
+
+used to create `alias` for data types (nicknames).
+
+```c
+typeded struct ComputerEngineeringStudent{
+    int roll;
+    float cgpa;
+    char name;
+} coe;
+```
+in the above code the structure is created named ComputerEngineeringStudent whose nickname is coe.
+
+we can call it as coe while adding information or using that structure.
+
+```c
+coe student1;
+```
+this will create a student 1 for that structure given above.
+
+example:-
+```c
+#include<stdio.h>
+#include<string.h>
+
+typedef struct computerEngineeringStudent{
+    int roll;
+    float cgpa;
+    char name[100];
+} coe;
+
+int main(){
+    coe s1;
+    s1.roll = 110040;
+    strcpy(s1.name , "priya");
+
+    printf("student name is %s \n" , s1.name);
+    
+    return 0;
+}
+```
+---
+## FILE IO
+FILE - container in a storage device to store data.
+
+- ram is `volatile`
+- contents are lost when program terminates
+- files are used to persist the data
+---
+### OPERATION ON FILES
+- `CREATE` a file
+- `OPEN` a file
+- `CLOSE` a file
+- `READ` from a file
+- `WRITE` in a file
+---
+### TYPES OF FILES
+1. **TEXT FILES** -> TEXUAL DATA
+    example:- `.txt`, `.c`
+2. **BINARY FILES** -> BINARY DATA
+    example:- `.exe`, `.mp3`, `.jpg`
+---
+### FILE POINTER 
+
+FILE is a (hidden) structure that needs to be created for opening a file. A FILE `ptr` that points to this structure & is used to access the file.
+
+```c
+FILE *fptr;
+```
+
+9:29:34
