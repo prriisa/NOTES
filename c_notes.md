@@ -2493,5 +2493,350 @@ FILE is a (hidden) structure that needs to be created for opening a file. A FILE
 ```c
 FILE *fptr;
 ```
+---
+### OPENING A FILE
+```c
+FILE *fptr;
+fptr = fopen("filename" , mode);
+```
+mode is like read, write, etc.
+### CLOSING A FILE 
+```c
+fclose(fptr);
+```
+---
+### FILE OPENING MODES
+|MODE|WORK|
+|:----:|:----:|
+|"r"|open to read|
+|"rb"|open to read in binary|
+|"w"|open to write|
+|"wb"|open to write in binary|
+|"a"|open to append|
 
-9:29:34
+- if the file doesn't exist in `r` or `rb` mode then `NULL` is stored. 
+- or if the file doesn't exist when you enter it in `w` or `wb` mode then it will create a new blank file and give it to the user.
+-  if we open a pre existing file to `w` mode then it will erase all the saved data or that file and give the black file to user to write.
+- if you want to just continue writing on your file with saved data safe then `a` mode is used which means read+write, user can read old data and keep continue writing in it.
+---
+### CHECK IF A FILE EXISTS BEFORE READING FROM IT
+```c
+#include<stdio.h>
+
+int main(){
+    FILE *fptr;
+    fptr = fopen("newtext.txt" , "r");
+    if(fptr == NULL){
+        printf("file doesn't exist \n");
+    }else(
+        fclose(fptr);
+    )
+    return 0;
+}
+```
+### READING FROM A FILE
+```c
+char ch;
+fscanf(fptr , "%c" , &ch);
+```
+this is used to read the characters from the file. 
+### WRITING TO A FILE
+```c
+char ch = 'a';
+fprintf(fptr , "%c" , ch);
+```
+this will write `ch` in the text file which we have opened in our fptr.
+
+for example:-
+```c
+#include <stdio.h>
+
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("text.txt", "w");
+    fprintf(fptr , "%c" , 'A');
+    fprintf(fptr , "%c" , 'P');
+    fprintf(fptr , "%c" , 'P');
+    fprintf(fptr , "%c" , 'L');
+    fprintf(fptr , "%c" , 'E');
+    return 0;
+}
+```
+THIS code will erase all the existing data from `text.txt` and add `APPLE` in it.
+
+you can also use `a` mode which will not delete the pre existing data of the file and also add data to it.
+---
+### READ & WRITE A CHAR
+```c
+fgetc(fptr);        //read
+fputc('A' , fptr);        //write
+```
+this is used to read and write a file character by character
+```c
+#include <stdio.h>
+
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("text.txt", "r");
+    printf("%c" , fgetc(fptr));
+    printf("%c" , fgetc(fptr));
+    printf("%c" , fgetc(fptr));
+    printf("%c" , fgetc(fptr));
+    printf("%c" , fgetc(fptr));
+    return 0;
+}
+``` 
+this also works the same.
+---
+```c
+#include <stdio.h>
+
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("text.txt", "a");
+    fputc('M' , fptr);
+    fputc('A' , fptr);
+    fputc('N' , fptr);
+    fputc('G' , fptr);
+    fputc('O' , fptr);
+    return 0;
+
+}
+```
+from this a text `MANGO` will be added in the last of `text.txt` file.
+---
+### EOF (End Of File)
+
+`fgetc` returns `EOF` to whow that the file has ended.
+```c
+#include <stdio.h>
+
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("text.txt", "r");
+    char ch;
+    do{
+        ch = fgetc(fptr);
+        printf("%c" , ch);
+    }
+    while(ch != EOF);
+
+    fclose(fptr);
+    return 0;
+
+}
+``` 
+this code is used to read whole data from `text.txt` fill till it reach `EOF`.
+---
+### MAKE A PROGRAM TO INPUT STUDENT INFORMATION FROM A USER & ENTER IT TO A FILE.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("student.txt", "w");
+
+    char name[100];
+    int age;
+    float cgpa;
+
+    printf("enter student name :");
+    scanf("%s" , name);
+    printf("enter student age :");
+    scanf("%d" , &age);
+    printf("enter student cgpa :");
+    scanf("%f" , &cgpa);
+
+    fprintf(fptr , "%s \t" , name );
+    fprintf(fptr , "%d \t" , age );
+    fprintf(fptr , "%f \t" , cgpa );
+    
+    fclose(fptr);
+    return 0;
+}
+```
+---
+### WRITE A PROGRAM TO WRITE ALL THE ODD NUMBERS FROM 1 TO N IN A FILE.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    FILE *fptr;
+    fptr = fopen("oddNum.txt", "w");
+
+    int n;
+    printf("enter your ending value :");
+    scanf("%d" , &n);
+
+    for(int i = 1 ; i <= n ; i++0{
+        if(i % 2 != 0){
+            fprintf(fptr , "%d \n" , i);
+        }
+    }
+
+    fclose(fptr);
+    return 0;
+}
+```
+### 2 NUMBERS - a & b ARE WRITTEN IN A FILE. WRITE A PROGRAM TO REPLACE THEM WITH THEIR SUM.
+
+```c
+#include <stdio.h>
+
+int main(){
+    FILE *fptr;
+    fptr = fopen("number.txt", "r");
+
+    int a , b;
+    fscanf(fptr , "%d" , &a);
+    fscanf(fptr , "%d" , &b);
+
+    fclose(fptr);
+
+    fptr = fopen("number.txt" , "w");
+    fprintf(fptr , "%d" , a+b);
+    fclose(fptr);
+
+    return 0;
+}
+```
+---
+## DYNAMIC MEMORY ALLOCATION
+
+it ia a way to allocate memory to a data structure during the runtime.
+
+we need some functions to allocate & free memory dynamically.
+
+> compile time jab hota hai jb hmara c compiler code ko run krta hai or us time pe memory allocate krta hai. runtime mtlb jb console window open ho or user values ko input kr rha ho. means time between code start and end,
+
+### FUNCTIONS FOR DMA
+
+1. `malloc()` -> memory allocation
+2. `calloc()` -> continuous allocation
+3. `free()`
+4. `realloc()` -> re-allocation
+
+to use these functions we need to add `<stbib.h>` library in our file which is responsible for dynamic memory allocation.
+
+### 1. `malloc()`
+
+takes number of bytes to be allocated & returns a pointer of type void
+```c
+ptr = (int*) malloc(5 * sizeof(int));
+```
+>`sizeof()` is used to get the size of any pre defined data type.
+
+is code ka mtlb hai ki hmare integer ka jitna size hoga bits mai usko excess kro and hme jitne integer us m store krane hai us se multiply kro i.e. `5` here and then us ko ptr pointer mai save krdo.
+
+`malloc()` returns a `void` pointer but hme toh usme integer value store krwani hai thats why hmne us code k aage `(int*)` use kiya jiska mtlb hai hmne dynamically us variable ko integer datatype allocate krdiya. 
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main(){
+    int *ptr;
+    ptr = (int*) malloc(5* sizeof(int));
+    ptr[0] = 1;
+    ptr[1] = 3;
+    ptr[2] = 5;
+    ptr[3] = 7;
+    ptr[4] = 9;
+    for(int i = 0 ; i<5 ; i++){
+        printf("%d \n" , ptr[i]);
+    }
+    return 0;
+}
+```
+### WRITE A PROGRAM TO ALLOCATE MEMORY TO STORE 5 PRICES.
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main(){
+    float *prices;
+    prices = (float *) malloc(5*sizeof(float));
+
+    for(int i = 0 ; i <5 ; i++){
+        printf("enter the price of products :");
+        scanf("%f" , &prices[i]);
+    }
+        
+    printf("\nPrices are \n");
+    for(int i = 0 ; i <5 ; i++){
+        printf("%f \n" , prices[i]);
+    }
+
+    return 0;
+}
+```
+---
+### `calloc()`
+
+initializes with 0
+```c
+ptr = (int*) calloc(5 , sizeof(int));
+```
+this means hme ek continuous memory allocate krni hai jisme hme 5 block chahiye or hr block ka size hoga integer k size ke equal.
+
+this also returns a void pointer tohh uska datatype hme dynamically change krna pdega using `(int*)`
+
+agr hm in memory location mai koi value allocate nhi krenge toh by default hme `0` value milegi
+---
+### `free()`
+
+we use it to free memory that is allocated using malloc and calloc
+
+```c
+free(ptr);
+```
+agr hm kisi variable ko statically koi memory allocate krate hai or jb uska koi use nhi hota toh c compiler us memory ko automatically free krdeta hai pr jab hm koi memory dynamically allote krte hai toh woh user ke hath mai hota hai ki use kb free krwani hai toh uske liye hm use krte hai `free()`.
+---
+### `realloc()`
+
+realloc (increase or decrease) memory using the same pointer & size .
+
+```c
+ptr = realloc(ptr , newSize);
+```
+mtlb hmne kisi pointer ko ek particular memory allocate ki then hme us memory ko increase yah decrease krna hai bina hactic code likhe data ko copy kiye tohh hm same pointer ki memory ko reallocate kr skte hai using this function.
+---
+### ALLOCATE MEMORY FOR 5 NUMBERS, THEN DYNAMICALLY INCREASE IT TO 8 NUMBERS.
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main(){
+    int *ptr;
+
+    ptr = (int *) calloc(5 , sizeof(int));
+    printf("enter numbers(5) :\n");
+    for(int i = 0 ; i < 5 ; i++){
+        scanf("%d" , &ptr[i]);
+    }
+
+    printf("enter numbers(8) :\n");
+    ptr = realloc(ptr , 8*sizeof(int));
+    for(int i = 0 ; i < 8 ; i++){
+        scanf("%d" , &ptr[i]);
+    }
+    printf("YOUR NUMBERS ARE :");
+    for(int i = 0 ; i<8 ; i++){
+        printf("%d \n" , ptr[i]);
+    }
+    free(ptr);
+    return 0;
+}
+```
+---
