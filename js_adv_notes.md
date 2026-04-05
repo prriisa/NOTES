@@ -723,7 +723,7 @@ it is like ki aap apne created variable and functions ko kha tak use kar skte ho
     function abcd(){
         console.log(a);
     }
-    funcion defg(){
+    function defg(){
         let a = 13;
         abcd();
     };
@@ -732,7 +732,7 @@ it is like ki aap apne created variable and functions ko kha tak use kar skte ho
 
     in this code. 
     
-    agr js dynamically scopped hota toh jb function `defg` chlta toh usme `abcd` function chalta or `defg` function mai `a` ki assigned value 13 hai mtlb console window pe  log hoga 13.
+    agr js dynamically scopped hota toh jb function `defg` chlta toh usme `abcd` function chalta or `defg` function mai `a` ki assigned value 13 hai mtlb console window pe log hoga 13.
 
 
 
@@ -832,4 +832,4 @@ function abcd(){
     fnc();
     ```
     
-    is function mai ek function scopped variable hai count jiski startting value assigned ki gyi h 0 and jb bhi  hm fnc call krenge toh click ki value +1 hojaegi for count < 5. if we try to change the value o click globally or outside that function it will not work as we have assigned the value. 
+    is function mai ek function scoped variable hai count jiski startting value assigned ki gyi h 0 and jb bhi  hm fnc call krenge toh click ki value +1 hojaegi for count < 5. if we try to change the value o click globally or outside that function it will not work as we have assigned the value. 
