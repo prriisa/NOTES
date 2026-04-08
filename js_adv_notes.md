@@ -833,3 +833,107 @@ function abcd(){
     ```
     
     is function mai ek function scoped variable hai count jiski startting value assigned ki gyi h 0 and jb bhi  hm fnc call krenge toh click ki value +1 hojaegi for count < 5. if we try to change the value o click globally or outside that function it will not work as we have assigned the value. 
+---
+## The `this` keyword
+
+`this` keyword is a special keyword. kyuki jaise ki baaki sare keyword ki value yah unka nature same rhta hai this keyword ki value yah nature badal jata hai iss baat se ki ap useh kaha use kr rhe ho.
+---
+### `this` in global scope
+
+```c
+console.log(this);
+```
+the output will be `window`.
+
+for now only keep in mind that window is a supreme. will discuss it after sometime.
+---
+### `this` in function
+
+```c
+function abcd(){
+    console.log(this);
+}
+abcd();
+```
+the output will be `window` again!!!
+---
+### `this` in method
+
+> ek aaisa function jo kisi object ki value ke andr ho, we call it as a method.
+
+```c
+let obj = {
+    Name : "priya",
+    sayName : function(){
+        console.log(this);
+    },
+};
+obj.sayName();
+```
+
+the output will be the whole object in which `this` is used. 
+`{Name: 'priya', sayName: ƒ}`
+
+mtlb simple language mai khe toh agr hm this ko method mai use krte hai toh this hmara wohi object hai jiske andr woh khud hai is time.
+
+```c
+let obj = {
+    Name : "priya",
+    age = 18,
+    sayName : function(){
+        console.log(this.age);
+    },
+};
+obj.sayName();
+```
+the output for this code will be `18` as this is the object and we are logging the value of age in this object.
+
+>agr hmne object mai jo function bnaya hai us function ko define krte time fat arrow ka use krliya toh this aapni value ko loose krdega or this ki value waps se window hojaegi.
+
+>agr aapne method ke andr ek se jyada function bna diye toh this apni value firse kho dega or window output dega...is se bchne ke liye hmesha jb obj mai ek se jyada function bnao toh use fat arrow function bnao, jis se this pe koi frk nhi pdega.
+
+---
+### `this` in event handler
+
+```c
+document.querySelector("h1").addEventListener("click" , function(){
+    console.log(this);
+});
+```
+
+here we get an output `<h1>hey</h1>` as the content of h1 is hey. means jab bhi event handling ke time this ko use kiya jata hai toh jis element pe event listener lga ho wohi this ki value hoti hai.
+---
+### `this` in class
+
+as we haven't discussed `class` before, will take only overview, will discuss classes later.
+
+```c
+class Abcd{
+    constructor(){
+        this.a = 12;
+    }
+}
+let val = new Abcd();
+```
+yaha class ek keyword hai or hme class ke name ka first character hmesha capital rkhna hota hai or uske andr ek instructor hota hai tohh jb Abcd run hoga toh uske andr jo instructor ka code likha hoga wohh run hoga tohh, agr hm class mai this ka use krte hai toh wohh whole class ki value this ke pass aajati hai, 
+
+agr hm new k sath class ko call kre toh jaha khi hmne this.variable bnaya hoga tohh wha wha ek blank object create hojaega ,
+
+the output will be :- `Abcd {a: 12}` here.
+
+at the end we come to know ki classes mai this ki value ek blank object hoti hai.
+---
+### SUMMARY
+- global => window
+- function => window
+- method with es5 function => always object
+- method with es6 arrow function => window
+- es5 function inside es5 method => window
+- arrow function inside es5 method => object
+- event handler => element
+- class => blank object
+---
+
+### ARROW FUNCTION AND LEXICAL `THIS`
+
+1:36:51
