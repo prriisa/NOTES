@@ -936,4 +936,91 @@ at the end we come to know ki classes mai this ki value ek blank object hoti hai
 
 ### ARROW FUNCTION AND LEXICAL `THIS`
 
-1:36:51
+arrow function hmesha apni value parent function se lete hai toh is se boht frk pdta hai ki this ki value hmse kha puchi ja rhi h.
+
+### MANUAL BINDING : BIND, CALL,APPLY
+
+function ko call krte wkt aap set kr skte ho ki uski this ki value kya hogi...
+
+abhi tk hmare function mai agr hm this pta kre toh this ki value hmesha window hoti hai pr agr hme us result ko chnge krna ho tohh:-
+
+```c
+let obj = {
+    name = "priya";
+};
+
+function abcd(){
+    console.log(this);
+}
+abcd.call(this);
+```
+jb bhi aap funtion ka naam likh ke usme ek function lgate hai .call or usme koi value pass krdete hai tohh `abcd` jo function tha uske this ki value wohi value jo hmne abhi pass kri thi woh hojati hai...
+
+is example mai this ki phle value window thi by default pr hmne call function mai obj pass krwadiya toh aab function ke this ki value `obj` ho jaegi!
+
+agr aapko function mai this ki value or parameters ki value sath me pass krni ho tohh aap try kr skte ho:-
+
+```c
+let obj = {
+    name:"priya",
+    age:18,
+};
+function abcd(a,b,c){
+    console.log(this , a , b , c);
+};
+abcd.call(obj , 1, 2, 3);
+```
+this code first prints the value of this i.e. object obj, then prints the value of a b c given. 
+--- 
+**APPLY**
+
+APPLY BHI almost call ke jesa hi h wobhi this ki value set krne ke liye use hota h bss isme frk sirf itna h ki isme bss 2 value pass hoti h first woh jo hme this ki value set krni h or second wohh jo hme parameters mai pass krni hoti h jitni values hai sbko ek array ki form me pass krwate h.
+
+```c
+let obj = {
+    name:"priya",
+    age:18,
+};
+function abcd(a,b,c){
+    console.log(this , a , b , c);
+};
+abcd.apply(obj , [1, 2, 3]);
+```
+this results the same.
+
+**BIND**
+
+BASICALLY this is not used to run a function, and creates a copy of that function jisko aapne call kiya tha, or agr aap us function ko nye variable me store krke call kronge tohh aapko nya function milega jiske this ki value by default jo aapne pass krwayi thi woh hogi or sath mai jo parameters ki value pass ki wohh hogi...
+
+```c
+let obj = {
+    name:"priya",
+    age:18,
+};
+function abcd(a, b, c, d){
+    console.log(this , a, b, c, d);
+};
+let fnc = abcd.bind(obj , 1 , 2, 3, 4);
+```
+agr console window pe check kroge tohh fnc ki value mai ek function return hoga...
+
+ ```c
+ h1 = document.querySelector("h1");
+
+const UserManager = {
+    users: [],
+    init: function () {
+        h1.addEventListener("click", function (e) {
+            e.preventDefault();
+            console.log("form submitted");
+            let fnc = this.bind(this);
+            console.log(this);
+        })
+    },
+    addUser: function () { },
+    removeUser: function () { },
+};
+
+UserManager.init();
+```
+1:55:10
