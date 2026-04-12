@@ -840,7 +840,7 @@ function abcd(){
 ---
 ### `this` in global scope
 
-```c
+```js
 console.log(this);
 ```
 the output will be `window`.
@@ -849,7 +849,7 @@ for now only keep in mind that window is a supreme. will discuss it after someti
 ---
 ### `this` in function
 
-```c
+```js
 function abcd(){
     console.log(this);
 }
@@ -861,7 +861,7 @@ the output will be `window` again!!!
 
 > ek aaisa function jo kisi object ki value ke andr ho, we call it as a method.
 
-```c
+```js
 let obj = {
     Name : "priya",
     sayName : function(){
@@ -876,7 +876,7 @@ the output will be the whole object in which `this` is used.
 
 mtlb simple language mai khe toh agr hm this ko method mai use krte hai toh this hmara wohi object hai jiske andr woh khud hai is time.
 
-```c
+```js
 let obj = {
     Name : "priya",
     age = 18,
@@ -895,7 +895,7 @@ the output for this code will be `18` as this is the object and we are logging t
 ---
 ### `this` in event handler
 
-```c
+```js
 document.querySelector("h1").addEventListener("click" , function(){
     console.log(this);
 });
@@ -907,7 +907,7 @@ here we get an output `<h1>hey</h1>` as the content of h1 is hey. means jab bhi 
 
 as we haven't discussed `class` before, will take only overview, will discuss classes later.
 
-```c
+```js
 class Abcd{
     constructor(){
         this.a = 12;
@@ -944,7 +944,7 @@ function ko call krte wkt aap set kr skte ho ki uski this ki value kya hogi...
 
 abhi tk hmare function mai agr hm this pta kre toh this ki value hmesha window hoti hai pr agr hme us result ko chnge krna ho tohh:-
 
-```c
+```js
 let obj = {
     name = "priya";
 };
@@ -960,7 +960,7 @@ is example mai this ki phle value window thi by default pr hmne call function ma
 
 agr aapko function mai this ki value or parameters ki value sath me pass krni ho tohh aap try kr skte ho:-
 
-```c
+```js
 let obj = {
     name:"priya",
     age:18,
@@ -976,7 +976,7 @@ this code first prints the value of this i.e. object obj, then prints the value 
 
 APPLY BHI almost call ke jesa hi h wobhi this ki value set krne ke liye use hota h bss isme frk sirf itna h ki isme bss 2 value pass hoti h first woh jo hme this ki value set krni h or second wohh jo hme parameters mai pass krni hoti h jitni values hai sbko ek array ki form me pass krwate h.
 
-```c
+```js
 let obj = {
     name:"priya",
     age:18,
@@ -992,7 +992,7 @@ this results the same.
 
 BASICALLY this is not used to run a function, and creates a copy of that function jisko aapne call kiya tha, or agr aap us function ko nye variable me store krke call kronge tohh aapko nya function milega jiske this ki value by default jo aapne pass krwayi thi woh hogi or sath mai jo parameters ki value pass ki wohh hogi...
 
-```c
+```js
 let obj = {
     name:"priya",
     age:18,
@@ -1004,23 +1004,56 @@ let fnc = abcd.bind(obj , 1 , 2, 3, 4);
 ```
 agr console window pe check kroge tohh fnc ki value mai ek function return hoga...
 
- ```c
- h1 = document.querySelector("h1");
+---
+## OOPS IN JAVASCRIPT
 
-const UserManager = {
-    users: [],
-    init: function () {
-        h1.addEventListener("click", function (e) {
-            e.preventDefault();
-            console.log("form submitted");
-            let fnc = this.bind(this);
-            console.log(this);
-        })
-    },
-    addUser: function () { },
-    removeUser: function () { },
-};
+hame sikhna hai factories banana, matlab ki aap ek  baar blue print bnado ki ek object kesa bnega toh hm nye nye objects with different values bna paynge, yehi upr upr se poora kaam hai OOPS mai. 
 
-UserManager.init();
+### CONSTRUCTOR FUNCTION
+
+```js
+
+function CreatePencil(company, price, color, quantity) {
+    this.company = company;
+    this.price = price;
+    this.color = color;
+    this.quantity = quantity;
+    this.write = function (text) {
+        h1 = document.createElement("h1");
+        h1.textContent = text;
+        h1.style.color = color;
+        document.body.append(h1);
+    }
+}
+
+let pencil1 = new CreatePencil("nataraj", 50, "black", 10);
+let pencil2 = new CreatePencil("apsara", 45, "grey", 10);
 ```
-1:55:10
+
+jab bhi aap kisi function ko new likh ke call krte ho toh uska ek new object bn jata hai...
+
+this is how we create a constructor function, good practice is writing the function first letter as a Captial letter.
+
+---
+### PROTOTYPES
+
+jab hm koi bhi constructor function create krte hai tohh usme hm kuch particular values dalte hai jo above example ke hisaab se hr baar alag hoti hai... chlo yeh toh thk h.... pr kbhi esa faze aaye ki aapki koi ek value hr object mai same aaye, for example aapko company hmesha apsara hi rkhni hai tohh aap us function ke parameter mai company ka input na leke this.company ko hard coated mai "apsara" likh skte ho, pr aaise agr hm jitni bhi pencil bnaynge un sbme company naam ka element kuch memory occupy krega... joki hme nhi cahiye, tohh iske liye km kr skte hai ki hm us part ko apne function se hi bahar nikal de or usko prototype mai daal de...
+
+```js
+
+function CreatePencil(company, price, color, quantity) {
+    this.price = price;
+    this.color = color;
+    this.quantity = quantity;
+    this.write = function (text) {
+        h1 = document.createElement("h1");
+        h1.textContent = text;
+        h1.style.color = color;
+        document.body.append(h1);
+    }
+};
+CreatePencil.prototype.company = "apsara";
+let pencil1 = new CreatePencil(50, "black", 10);
+let pencil2 = new CreatePencil(45, "grey", 10);
+```
+![image](images\js-adv\prototype.png)
