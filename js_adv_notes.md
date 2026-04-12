@@ -1056,4 +1056,4 @@ CreatePencil.prototype.company = "apsara";
 let pencil1 = new CreatePencil(50, "black", 10);
 let pencil2 = new CreatePencil(45, "grey", 10);
 ```
-![image](images\js-adv\prototype.png)
+![image](images/js-adv/prototype.png)
