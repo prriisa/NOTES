@@ -1057,3 +1057,45 @@ let pencil1 = new CreatePencil(50, "black", 10);
 let pencil2 = new CreatePencil(45, "grey", 10);
 ```
 ![image](images/js-adv/prototype.png)
+
+this is what we are getting..
+
+aap hme kbhi bhi company ki value access krni hogi toh hm use kr skte hai:-
+```js
+pencil1.company
+```
+ and hme uski value mil jaegi...
+
+ >agar tumhara constructor function koi field apne prototype par attach karle to us constructor sai ban ne wale sabhi new instances yani ki objects, ke pass woh field automatically chali jati hai
+
+>prototype is like an extra memory
+
+is se hm jab bhi nye objects bnaynge toh unko alag memory allote nhi hogi bnki jitne objects is constructor function se bne hai sbke pass ek same (shared memory) hogi jise woh jb chahe access kr skte hai
+
+---
+### CLASS
+
+```js
+class CreatePencil{
+    constructor(name, company, price , color){
+        this.name = name;
+        this.company = company;
+        this.price = price;
+        this.color = color;
+    }
+    write(text){
+        let h1 = document.createElement("h1");
+        h1.textContent = text;
+        h1.style.color = this.color;
+        document.body.append(h1);
+    }
+}
+
+let pencil1 = new CreatePencil("nataraj" , "nataraj" , 10, "black");
+
+let pencil2 = new CreatePencil("apsara" , "nataraj" , 10, "red");
+
+```
+
+>generally consructor ka work hota hai default values set krna yah initialize krna,  variables create krna
+
