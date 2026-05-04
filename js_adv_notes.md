@@ -833,11 +833,15 @@ function abcd(){
     ```
     
     is function mai ek function scoped variable hai count jiski startting value assigned ki gyi h 0 and jb bhi  hm fnc call krenge toh click ki value +1 hojaegi for count < 5. if we try to change the value o click globally or outside that function it will not work as we have assigned the value. 
+
 ---
+
 ## The `this` keyword
 
 `this` keyword is a special keyword. kyuki jaise ki baaki sare keyword ki value yah unka nature same rhta hai this keyword ki value yah nature badal jata hai iss baat se ki ap useh kaha use kr rhe ho.
+
 ---
+
 ### `this` in global scope
 
 ```js
@@ -846,7 +850,9 @@ console.log(this);
 the output will be `window`.
 
 for now only keep in mind that window is a supreme. will discuss it after sometime.
+
 ---
+
 ### `this` in function
 
 ```js
@@ -856,6 +862,7 @@ function abcd(){
 abcd();
 ```
 the output will be `window` again!!!
+
 ---
 ### `this` in method
 
@@ -902,6 +909,7 @@ document.querySelector("h1").addEventListener("click" , function(){
 ```
 
 here we get an output `<h1>hey</h1>` as the content of h1 is hey. means jab bhi event handling ke time this ko use kiya jata hai toh jis element pe event listener lga ho wohi this ki value hoti hai.
+
 ---
 ### `this` in class
 
@@ -922,6 +930,7 @@ agr hm new k sath class ko call kre toh jaha khi hmne this.variable bnaya hoga t
 the output will be :- `Abcd {a: 12}` here.
 
 at the end we come to know ki classes mai this ki value ek blank object hoti hai.
+
 ---
 ### SUMMARY
 - global => window
@@ -1099,3 +1108,20 @@ let pencil2 = new CreatePencil("apsara" , "nataraj" , 10, "red");
 
 >generally consructor ka work hota hai default values set krna yah initialize krna,  variables create krna
 
+ ---
+
+ ### EXTENDS
+
+  mtlb ek class jisme dusri class ke kuch elements bhi ho or khudke bhi ho...
+
+
+  ```js
+  class Admin extends User{
+    constructor(name, address, username, email, role){
+        super(name, address, username, email, role);
+        
+    }
+  }
+  ```
+
+  2:29
