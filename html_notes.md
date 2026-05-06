@@ -407,3 +407,8 @@ agr kisi tag mai `draggable = "true"` krde toh aap website mai hi usko drag krsk
 - `aside` => left section
 - `details`
 - `summary`
+
+---
+## SEO
+
+head tag play an important role in a good seo.
