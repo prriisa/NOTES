@@ -412,3 +412,34 @@ agr kisi tag mai `draggable = "true"` krde toh aap website mai hi usko drag krsk
 ## SEO
 
 head tag play an important role in a good seo.
+
+---
+
+### META TAGS
+
+```html
+<meta charset="UTF-8">
+```
+
+every character of every language needs to be understood by the computer there is a ASCII code which have some meaning of these character means every character hold some specific integer value because of ASCII code ohky so ASCII is used in many places. in html we use `UTF-8` which holds a specific value of all the characters ALL the english character, different for both small and big..., of all emojis and symbols. 
+
+by using this charset attribute with meta tag inside head tag we will be able to set this in our html file.
+
+---
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+this tag is used to set the view of your webpage as written in the content that the width of webpage should be equal to the device-width and the initial-scale is responsible for the zoom which is responsible for the zoom.
+
+---
+```html
+<meta name="description" content="Learn HTML from scratch in 30 days. Covers semantic HTML, forms, tables, SEO, and accessibility. Free course by LearnWeb India.">
+```
+
+is tag se aap apni website ka description set kr rkhte h jo browser read krta hai then user jb kuchbhi search krta h toh is description ke basis p usko website suggest hoti h
+
+---
+```html
+<meta name="keywords" content="Learn HTML from scratch in 30 days. Covers semantic HTML, forms, tables, SEO, and accessibility. Free course by LearnWeb India.">
+```
+by this tag you can set the keywords for your website jo browser read krta hai and ushi k basis p user search pe result provide krta hai but sometimes it could be a 
