@@ -239,13 +239,3 @@ after that Q completed remaining 16 units in 16/3 days = 5.33 days
 ```
 
 ---
-
-`ques` P is thrice as good a workman as Q and, therefore, is able to finish a job in 60 days less than Q. Working together, they can do it in :
-
-```
-Q = x
-P = 60 - x
-
-efficiency of Q = 
-
-
