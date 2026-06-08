@@ -37,7 +37,7 @@ diferent data types uses different number of bytes value. `8 bit = 1 byte`. here
 
 - #### FLOAT DATA TYPE
 
-    they are used to store decimaal values. 
+    they are used to store decimal values. 
 
     ```c
     float pi = 3.14;
@@ -87,7 +87,7 @@ int main(){
 
 HERE , `#include<stdio.h>` is a preprocessor directive. will discuss in detail after sometime.
 
-uske baad `int main()` ki help se hm ek main function banate hai then jo compiler hai wohh main function ke andr ke code ko line by line check krta hai or run krta hai. `{}` ke andr jo code likha jata hai wo hoti hai statement  `;` ka mtlb ek trh se hota hai full stop. and funtion ki last statement hm `return 0` karte hai jisme `0` ka  mtlb hai 0 errors. mtlb hmara program 0 error ke run hojae 
+uske baad `int main()` ki help se hm ek main function banate hai then jo compiler hai wohh main function ke andr ke code ko line by line check krta hai or run krta hai. `{}` ke andr jo code likha jata hai wo hoti hai statement  `;` ka mtlb ek trh se hota hai full stop. and function ki last statement hm `return 0` karte hai jisme `0` ka  mtlb hai 0 errors. mtlb hmara program 0 error ke run hojae 
 
 ---
 
@@ -100,7 +100,7 @@ every time when you need to refresh the program and run it again.
 ---
 
 ## COMMENTS
- they are not a part of main program they are just used for to reader to explain what the given code is about of. 
+ they are not a part of main program they are just created for the reader to explain what the given code is about of. 
 
  - `// comment here` used for single line comment.
  - `/*   comment here  */` used for multiple lines.
@@ -119,7 +119,7 @@ generally prints the given command.
 ```c
 printf("hello world");
 ```
-here the result output will be `hello world` , jo kuch bhi quotes ke andr likhe jate hai, single yah double quotes ke andr wo sara data as it is print ho jata hai. agr woh koi special command nhi hai to.
+here the result output will be `hello world` , jo kuch bhi `' '` yah `"  "` quotes ke andr likhe jate hai, single yah double quotes ke andr wo sara data as it is print ho jata hai. agr woh koi special command nhi hai to.
 
 ```c
 #include<stdio.h>
@@ -305,7 +305,7 @@ you can't use a variable befor declaration.
 int x = 12 + y;
 int y = 18;
 ```
-this code will give you an error as complier reads the file line by line and in the first line it will get an undefined variable y and can't give the value of y at that moment.
+this code will give you an error as the code runs line by line and in the first line it will get an undefined variable y and can't give the value of y at that moment.
 
 ```c
 int x , y , z ;
@@ -332,7 +332,7 @@ A kind of mathematical operations.
 x = a + b * c % d
 ```
 
-this is an arithematic instruction where the term written in the right hand side contains methametical operations and called as RHS where as x is in the left hand side which will stores the output of the given instruction. 
+this is an arithematic instruction where the term written in the right hand side contains mathematical operations and called as RHS where as x is in the left hand side which will stores the output of the given instruction. 
 
 > LHS must contain only a single variable.
 
@@ -858,7 +858,7 @@ for(initialisation ; condition ; updation){
 let's understand with an example:-
 
 ```c
-for(let i = 0; i<=5; i++){
+for(int i = 0; i<=5; i++){
     printf("hello world\n");
 }
 ```
@@ -1641,7 +1641,7 @@ float **pptr;
 
     int main(){
         int number = 15;
-        sum(number);
+        sum(&number);
         printf("number is %d \n" , number);
     }
 
