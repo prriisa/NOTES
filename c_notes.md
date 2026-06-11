@@ -1796,7 +1796,7 @@ in this case the memory get increased by 1 as character stores 1 byte of memory.
 ---
 ### ARRAY IS A POINTER 
 ```c
-int *ptr = %arr[0];
+int *ptr = arr[0];
         OR
 int *ptr = arr;
 ```
@@ -2009,6 +2009,7 @@ every letter occupy a particular memory location and in a string all characters 
 |:----:|:----:|:----:|:----:|:----:|:----:|
 2000|2001|2002|2003|2004|2005|
 ---
+
 ### create a string firstName and lastName to store details of user & print all the characters using a loop.
 
 ```c
@@ -2095,7 +2096,7 @@ int main(){
 ---
 ### STRING USING POINTERS
 ```c
-char *str = Hello world";
+char *str = "Hello world";
 ```
 store string in memory & the assigned address is stored in the char pointer `str`
 
@@ -2132,8 +2133,9 @@ char str[] = "hello world";     //cannot be reinitialized
 
     int main(){
         char *name = "priya";
-        int length = strlen(name);
-        printf("%d" , length);
+        char *newName;
+        strcpy(newName , name);
+        printf("%d" , newName);
     }
     ```
 
@@ -2407,6 +2409,7 @@ struct student *ptr;
 ptr = &s1;
 ```
 here first we have created a student structure for s1 and then created a pointer structure and then give the address of s1 to that pointer.
+
 ---
 ### ARROW OPERATOR
 
@@ -2566,6 +2569,7 @@ int main()
 THIS code will erase all the existing data from `text.txt` and add `APPLE` in it.
 
 you can also use `a` mode which will not delete the pre existing data of the file and also add data to it.
+
 ---
 ### READ & WRITE A CHAR
 ```c
@@ -2573,6 +2577,9 @@ fgetc(fptr);        //read
 fputc('A' , fptr);        //write
 ```
 this is used to read and write a file character by character
+
+---
+
 ```c
 #include <stdio.h>
 
@@ -2589,6 +2596,7 @@ int main()
 }
 ``` 
 this also works the same.
+
 ---
 ```c
 #include <stdio.h>
@@ -2607,6 +2615,7 @@ int main()
 }
 ```
 from this a text `MANGO` will be added in the last of `text.txt` file.
+
 ---
 ### EOF (End Of File)
 
@@ -2631,6 +2640,7 @@ int main()
 }
 ``` 
 this code is used to read whole data from `text.txt` fill till it reach `EOF`.
+
 ---
 ### MAKE A PROGRAM TO INPUT STUDENT INFORMATION FROM A USER & ENTER IT TO A FILE.
 
@@ -2791,6 +2801,7 @@ this means hme ek continuous memory allocate krni hai jisme hme 5 block chahiye 
 this also returns a void pointer tohh uska datatype hme dynamically change krna pdega using `(int*)`
 
 agr hm in memory location mai koi value allocate nhi krenge toh by default hme `0` value milegi
+
 ---
 ### `free()`
 
@@ -2800,6 +2811,7 @@ we use it to free memory that is allocated using malloc and calloc
 free(ptr);
 ```
 agr hm kisi variable ko statically koi memory allocate krate hai or jb uska koi use nhi hota toh c compiler us memory ko automatically free krdeta hai pr jab hm koi memory dynamically allote krte hai toh woh user ke hath mai hota hai ki use kb free krwani hai toh uske liye hm use krte hai `free()`.
+
 ---
 ### `realloc()`
 
@@ -2809,6 +2821,7 @@ realloc (increase or decrease) memory using the same pointer & size .
 ptr = realloc(ptr , newSize);
 ```
 mtlb hmne kisi pointer ko ek particular memory allocate ki then hme us memory ko increase yah decrease krna hai bina hactic code likhe data ko copy kiye tohh hm same pointer ki memory ko reallocate kr skte hai using this function.
+
 ---
 ### ALLOCATE MEMORY FOR 5 NUMBERS, THEN DYNAMICALLY INCREASE IT TO 8 NUMBERS.
 
